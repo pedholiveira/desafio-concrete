@@ -12,9 +12,9 @@ import dto.ErroDto;
 public abstract class BaseController {
 	
 	/**
-	 * Método manipulador 
+	 * MÃ©todo manipulador 
 	 * 
-	 * @return dto com a mensagem de erro da exceção.
+	 * @return dto com a mensagem de erro da exceÃ§Ã£o.
 	 */
 	@ExceptionHandler(Exception.class)
 	public ErroDto exceptionHandler(Exception e) {
