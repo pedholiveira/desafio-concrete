@@ -10,6 +10,7 @@ node_modules
 
 hs_err_pid*
 
+.gradle
 .settings/
 .classpath
 .project
