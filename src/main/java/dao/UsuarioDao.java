@@ -12,7 +12,7 @@ import repository.UsuarioRepository;
 import util.HibernateUtil;
 
 /**
- * Implementação do repositório de dados da entidade {@link Usuario}.
+ * ImplementaÃ§Ã£o do repositÃ³rio de dados da entidade {@link Usuario}.
  * 
  * @author Pedro Henrique
  */

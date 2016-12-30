@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 /**
- * Utilit·rio criado para o gerenciamento do {@link SessionFactory}.
+ * Utilit√°rio criado para o gerenciamento do {@link SessionFactory}.
  * 
  * @author Pedro Henrique
  */
@@ -14,7 +14,7 @@ public abstract class HibernateUtil {
 	private static SessionFactory sessionFactory = criarSessionFactory();
 
 	/**
-	 * Cria uma nova inst‚ncia de um {@link SessionFactory}.
+	 * Cria uma nova inst√¢ncia de um {@link SessionFactory}.
 	 * 
 	 * @return session factory
 	 */
@@ -34,7 +34,7 @@ public abstract class HibernateUtil {
 	}
 
 	/**
-	 * ObtÈm uma inst‚ncia de um Session Factory.
+	 * Obt√©m uma inst√¢ncia de um Session Factory.
 	 * 
 	 * @return
 	 */
@@ -43,7 +43,7 @@ public abstract class HibernateUtil {
 	}
 
 	/**
-	 * Fecha a inst‚ncia do Session Factory.
+	 * Fecha a inst√¢ncia do Session Factory.
 	 */
 	public static void fechar() {
 		obterSessionFactory().close();

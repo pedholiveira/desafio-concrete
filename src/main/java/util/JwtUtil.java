@@ -9,7 +9,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
 /**
- * Utilitário criado para manipular os 
+ * UtilitÃ¡rio criado para manipular os 
  * tokens de acesso do sistema.
  * 
  * @author Pedro Henrique
@@ -36,7 +36,7 @@ public abstract class JwtUtil {
 	}
 	
 	/**
-	 * Verifica se um token é valido.
+	 * Verifica se um token ï¿½ valido.
 	 * 
 	 * @param token
 	 * @return true caso o token seja valido.

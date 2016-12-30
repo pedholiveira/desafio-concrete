@@ -8,6 +8,11 @@ import model.Usuario;
 import repository.UsuarioRepository;
 import util.JwtUtil;
 
+/**
+ * Camada de serviÃ§os da entidade {@link Usuario}.
+ * 
+ * @author Pedro Henrique
+ */
 @Service
 public class UsuarioService {
 	
@@ -29,7 +34,7 @@ public class UsuarioService {
 			
 			return repository.criar(dto);
 		} catch (Exception e) {
-			throw new Exception("Falha ao tentar gerar token para o usuário.");
+			throw new Exception("Falha ao tentar gerar token para o usuï¿½rio.");
 		}
 	}
 }

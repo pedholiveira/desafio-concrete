@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import dto.TelefoneDto;
 
 /**
- * Entidade para representar um número telefonico de um usuário.
+ * Entidade para representar um nÃºmero telefonico de um usuÃ¡rio.
  * 
  * @author Pedro Henrique
  */

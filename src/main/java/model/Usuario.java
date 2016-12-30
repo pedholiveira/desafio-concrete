@@ -16,7 +16,7 @@ import dto.TelefoneDto;
 import dto.UsuarioDto;
 
 /**
- * Entidade para representar um usu·rio do sistema.
+ * Entidade para representar um usu√°rio do sistema.
  * 
  * @author Pedro Henrique
  */

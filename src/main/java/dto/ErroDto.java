@@ -1,7 +1,7 @@
 package dto;
 
 /**
- * DTO para retornar as mensagem das exceções ocorridas no sistema.
+ * DTO para retornar as mensagem das exceÃ§Ãµes ocorridas no sistema.
  * 
  * @author Pedro Henrique
  */

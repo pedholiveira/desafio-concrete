@@ -4,14 +4,14 @@ import dto.UsuarioDto;
 import model.Usuario;
 
 /**
- * RepositÛrio de dados da entidade {@link Usuario}.
+ * Reposit√≥rio de dados da entidade {@link Usuario}.
  * 
  * @author Pedro Henrique
  */
 public interface UsuarioRepository {
 	
 	/**
-	 * Cria um novo registro de usu·rio no banco.
+	 * Cria um novo registro de usu√°rio no banco.
 	 * 
 	 * @param dto
 	 * @return usuario
