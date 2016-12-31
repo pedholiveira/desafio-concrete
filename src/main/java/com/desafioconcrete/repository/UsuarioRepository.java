@@ -19,10 +19,35 @@ public interface UsuarioRepository {
 	public Usuario criar(UsuarioDto dto);
 	
 	/**
-	 * Retorna um registro de usuário a partir de um email.
+	 * Atualiza um registro de um usuário.
+	 * 
+	 * @param usuario
+	 * @return usuario atualizad
+	 */
+	public Usuario atualizar(Usuario usuario);
+	
+	/**
+	 * Recupera um usuário salvo a partir do seu id.
+	 * 
+	 * @param is
+	 * @return usuario encontrado
+	 */
+	public Usuario recuperar(String id);
+	
+	/**
+	 * Busca um registro de usuário a partir de um email.
 	 * 
 	 * @param email
 	 * @return usuario encontrado
 	 */
-	public Usuario obterPorEmail(String email);
+	public Usuario buscar(String email);
+	
+	/**
+	 * Busca um registro de usuário a partir de um email e senha.
+	 * 
+	 * @param email
+	 * @param senha
+	 * @return usuario encontrado
+	 */
+	public Usuario buscar(String email, String senha);
 }

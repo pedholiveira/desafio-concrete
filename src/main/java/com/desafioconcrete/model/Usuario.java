@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.desafioconcrete.dto.TelefoneDto;
 import com.desafioconcrete.dto.UsuarioDto;
@@ -27,16 +30,17 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 5492802008085045171L;
 
 	@Id
-	@GeneratedValue
-	@Column(name = "id", unique = true, nullable = false)
-	private Long id;
+	@GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "CHAR(32)")
+	private String id;
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	@Column(name = "senha", nullable = false)
 	private String senha;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.PERSIST)
 	private List<Telefone> telefones;
 
 	@Column(name = "data_criacao", nullable = false)
@@ -67,21 +71,23 @@ public class Usuario implements Serializable {
 		
 		telefones = new ArrayList<>();
 		for (TelefoneDto telefoneDto : dto.getTelefones()) {
-			telefones.add(new Telefone(telefoneDto));
+			Telefone telefone = new Telefone(telefoneDto);
+			telefone.setUsuario(this);
+			telefones.add(telefone);
 		}
 	}
 	
 	/**
 	 * @return id
 	 */
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * @param id
 	 */
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

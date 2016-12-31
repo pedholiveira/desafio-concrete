@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.desafioconcrete.dto.TelefoneDto;
 
 /**
@@ -24,9 +26,10 @@ public class Telefone implements Serializable {
 	private static final long serialVersionUID = -586386007409444121L;
 
 	@Id
-	@GeneratedValue
-	@Column(name = "id", unique = true, nullable = false)
-	private Long id;
+	@GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "CHAR(32)")
+	private String id;
 	@Column(name = "ddd", nullable = false)
 	private String ddd;
 	@Column(name = "numero", nullable = false)
@@ -55,14 +58,14 @@ public class Telefone implements Serializable {
 	/**
 	 * @return id
 	 */
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * @param id
 	 */
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

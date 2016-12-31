@@ -33,7 +33,7 @@ public class UsuarioDao implements UsuarioRepository {
 			usuario.setDataCriacao(LocalDateTime.now());
 			usuario.setDataModificacao(LocalDateTime.now());
 			
-			session.save(usuario);
+			session.persist(usuario);
 			
 			session.getTransaction().commit();
 
@@ -44,26 +44,63 @@ public class UsuarioDao implements UsuarioRepository {
 	}
 	
 	@Override
-	public Usuario obterPorEmail(String email) {
+	public Usuario atualizar(Usuario usuario) {
 		Session session = obterSessionFactory().openSession();
 		try {
-			Query<Usuario> query = session.createQuery(obterQueryBuscaPorEmail(), Usuario.class);
-			query.setParameter("email", email);
+			session.beginTransaction();
+			session.update(usuario);
+			session.getTransaction().commit();
+
+			return usuario;
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public Usuario recuperar(String id) {
+		String sql = "select u from Usuario u where u.id = :id";
+		Session session = obterSessionFactory().openSession();
+		try {
+			Query<Usuario> query = session.createQuery(sql, Usuario.class);
+			query.setParameter("id", id);
+
 			List<Usuario> resultado = query.getResultList();
-			
+			return resultado.size() > 0 ? resultado.get(0) : null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public Usuario buscar(String email) {
+		String sql = "select u from Usuario u where u.email = :email";
+		Session session = obterSessionFactory().openSession();
+		try {
+			Query<Usuario> query = session.createQuery(sql, Usuario.class);
+			query.setParameter("email", email);
+
+			List<Usuario> resultado = query.getResultList();
 			return resultado.size() > 0 ? resultado.get(0) : null;
 		} finally {
 			session.close();
 		}
 	}
 
-	/**
-	 * Retorna a query de busca de usuários por email.
-	 * 
-	 * @return query de busca
-	 */
-	private String obterQueryBuscaPorEmail() {
-		return "select u from Usuario u where u.email = :email";
+	@Override
+	public Usuario buscar(String email, String senha) {
+		String sql = "select u from Usuario u where u.email = :email and u.senha = :senha";
+		Session session = obterSessionFactory().openSession();
+		try {
+			Query<Usuario> query = session.createQuery(sql, Usuario.class);
+			query.setParameter("email", email);
+			query.setParameter("senha", senha);
+			
+			List<Usuario> resultado = query.getResultList();
+			return resultado.size() > 0 ? resultado.get(0) : null;
+		} finally {
+			session.close();
+		}
 	}
 	
 	/**

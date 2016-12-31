@@ -30,19 +30,19 @@ public abstract class JwtUtil {
 			        			.sign(Algorithm.HMAC256(SECRET));
 			return token;
 		} catch (Exception e) {
-			throw new Exception("Falha ao tentar gerar token para o usuário.");
+			throw new Exception(e);
 		}
 	}
 	
 	/**
-	 * Verifica se um token � valido.
+	 * Verifica se um token é valido.
 	 * 
 	 * @param token
 	 * @return true caso o token seja valido.
 	 * 
 	 * @throws Exception 
 	 */
-	public boolean validarToken(String token) throws Exception {
+	public static boolean validarToken(String token) throws Exception {
 		try {
 		    JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET))
 		    							.withIssuer(ISSUER)
@@ -51,7 +51,7 @@ public abstract class JwtUtil {
 		} catch (JWTVerificationException exception){
 		    return false;
 		} catch (Exception e) {
-			throw new Exception("Falha ao tentar validar token do usuário.");
+			throw new Exception(e);
 		}
 		
 		return true;
