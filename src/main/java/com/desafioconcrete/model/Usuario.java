@@ -40,7 +40,7 @@ public class Usuario implements Serializable {
 	private String email;
 	@Column(name = "senha", nullable = false)
 	private String senha;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario", cascade = CascadeType.PERSIST)
 	private List<Telefone> telefones;
 
 	@Column(name = "data_criacao", nullable = false)

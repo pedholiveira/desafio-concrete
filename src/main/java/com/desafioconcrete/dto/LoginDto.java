@@ -1,5 +1,7 @@
 package com.desafioconcrete.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Dto com os dados de login.
  * 
@@ -7,6 +9,7 @@ package com.desafioconcrete.dto;
  */
 public class LoginDto {
 	private String email;
+	@JsonProperty("password")
 	private String senha;
 
 	/**

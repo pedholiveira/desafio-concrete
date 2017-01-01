@@ -56,7 +56,7 @@ public class UsuarioService {
 	 */
 	public Usuario obter(String id, String token) throws RestException {
 		Usuario usuario = repository.recuperar(id);
-		boolean sessaoExpirou = !usuario.getUltimoLogin().isAfter(LocalDateTime.now().minusMinutes(30));
+		boolean sessaoExpirou = usuario.getUltimoLogin() == null || !usuario.getUltimoLogin().isAfter(LocalDateTime.now().minusMinutes(30));
 		
 		if(token == null || !usuario.getToken().equals(token)) {
 			throw new RestException(HttpStatus.UNAUTHORIZED, "Não autorizado.");

@@ -21,20 +21,20 @@ import com.desafioconcrete.service.UsuarioService;
  * 
  * @author Pedro Henrique
  */
-@RestController("/rest/usuario")
+@RestController
 public class UsuarioController extends BaseController {
 	
 	@Autowired
 	private UsuarioService service;
 	
-	@RequestMapping(method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@RequestMapping(path="/usuario", method=RequestMethod.POST, consumes="application/json", produces="application/json")
 	public Usuario criar(@RequestBody UsuarioDto dto, HttpServletResponse response) throws RestException {
 		Usuario usuario = service.criar(dto);
 		response.setStatus(HttpStatus.CREATED.value());
 		return usuario;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(path="/usuario/{id}", method=RequestMethod.GET, produces="application/json")
 	public Usuario obter(@PathVariable String id, @RequestHeader("token") String token, HttpServletResponse response) throws Exception {
 		return service.obter(id, token);
 	}

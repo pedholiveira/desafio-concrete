@@ -4,16 +4,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.desafioconcrete.dto.UsuarioDto;
-import com.desafioconcrete.model.Telefone;
 import com.desafioconcrete.model.Usuario;
 import com.desafioconcrete.repository.UsuarioRepository;
+import com.desafioconcrete.util.HibernateUtil;
 
 /**
  * Implementação do repositório de dados da entidade {@link Usuario}.
@@ -25,7 +22,7 @@ public class UsuarioDao implements UsuarioRepository {
 
 	@Override
 	public Usuario criar(UsuarioDto dto) {
-		Session session = obterSessionFactory().openSession();
+		Session session = HibernateUtil.obterSessionFactory().openSession();
 		try {
 			session.beginTransaction();
 			
@@ -45,7 +42,7 @@ public class UsuarioDao implements UsuarioRepository {
 	
 	@Override
 	public Usuario atualizar(Usuario usuario) {
-		Session session = obterSessionFactory().openSession();
+		Session session = HibernateUtil.obterSessionFactory().openSession();
 		try {
 			session.beginTransaction();
 			session.update(usuario);
@@ -60,7 +57,7 @@ public class UsuarioDao implements UsuarioRepository {
 	@Override
 	public Usuario recuperar(String id) {
 		String sql = "select u from Usuario u where u.id = :id";
-		Session session = obterSessionFactory().openSession();
+		Session session = HibernateUtil.obterSessionFactory().openSession();
 		try {
 			Query<Usuario> query = session.createQuery(sql, Usuario.class);
 			query.setParameter("id", id);
@@ -75,7 +72,7 @@ public class UsuarioDao implements UsuarioRepository {
 	@Override
 	public Usuario buscar(String email) {
 		String sql = "select u from Usuario u where u.email = :email";
-		Session session = obterSessionFactory().openSession();
+		Session session = HibernateUtil.obterSessionFactory().openSession();
 		try {
 			Query<Usuario> query = session.createQuery(sql, Usuario.class);
 			query.setParameter("email", email);
@@ -90,7 +87,7 @@ public class UsuarioDao implements UsuarioRepository {
 	@Override
 	public Usuario buscar(String email, String senha) {
 		String sql = "select u from Usuario u where u.email = :email and u.senha = :senha";
-		Session session = obterSessionFactory().openSession();
+		Session session = HibernateUtil.obterSessionFactory().openSession();
 		try {
 			Query<Usuario> query = session.createQuery(sql, Usuario.class);
 			query.setParameter("email", email);
@@ -101,19 +98,5 @@ public class UsuarioDao implements UsuarioRepository {
 		} finally {
 			session.close();
 		}
-	}
-	
-	/**
-	 * Retorna um {@link SessionFactory} para acesso ao banco. 
-	 * 
-	 * @return sessionFactory
-	 */
-	private SessionFactory obterSessionFactory() {
-		Configuration configuration = new Configuration().configure();
-		configuration.addAnnotatedClass(Telefone.class)
-						.addAnnotatedClass(Usuario.class);
-		
-    	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-        return configuration.buildSessionFactory(builder.build());
 	}
 }

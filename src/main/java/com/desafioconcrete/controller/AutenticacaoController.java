@@ -16,13 +16,13 @@ import com.desafioconcrete.service.AutenticacaoService;
  * 
  * @author Pedro Henrique
  */
-@RestController("/rest/autenticacao")
+@RestController
 public class AutenticacaoController extends BaseController {
 	
 	@Autowired
 	private AutenticacaoService service;
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@RequestMapping(path="/autenticacao/login", method=RequestMethod.POST, consumes="application/json", produces="application/json")
 	public Usuario login(@RequestBody LoginDto dto) throws RestException {
 		return service.login(dto);
 	}

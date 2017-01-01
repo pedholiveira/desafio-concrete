@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.desafioconcrete.dto.TelefoneDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Entidade para representar um número telefonico de um usuário.
@@ -35,6 +36,7 @@ public class Telefone implements Serializable {
 	@Column(name = "numero", nullable = false)
 	private String numero;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_id", nullable = false)
 	private Usuario usuario;
